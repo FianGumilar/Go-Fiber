@@ -2,9 +2,22 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/gofiber/fiber/v2"
 )
+
+func CutomConfig() {
+	app := fiber.New()
+
+	app.Static("/", "./public", fiber.Static{
+		Compress:      true,
+		ByteRange:     true,
+		Browse:        true,
+		CacheDuration: 10 * time.Second,
+		MaxAge:        3600,
+	})
+}
 
 func main() {
 
